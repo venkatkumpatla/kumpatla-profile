@@ -1,4 +1,3 @@
-cat > firebase.json <<'JSON'
 {
   "hosting": {
     "public": "dist",
@@ -15,4 +14,3 @@ cat > firebase.json <<'JSON'
     ]
   }
 }
-JSON
