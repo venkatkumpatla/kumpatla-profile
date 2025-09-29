@@ -1,7 +1,7 @@
-cat > .firebaserc <<'JSON'
 {
   "projects": {
-    "default": "my-profile-fad99"
-  }
+    "default": "kumpatla-profile"
+  },
+  "targets": {},
+  "etags": {}
 }
-JSON

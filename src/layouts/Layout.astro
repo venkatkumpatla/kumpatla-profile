@@ -1,22 +1,45 @@
-<!doctype html>
+---
+const {
+  title = "Venkateswararao Kumpatla — Profile",
+  description = "Personal profile of Venkateswararao Kumpatla",
+} = Astro.props;
+---
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preload" as="image" href="/profile.jpg" />
+    <link rel="stylesheet" href="/styles/site.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <header class="site-header">
+      <nav class="container nav">
+        <a href="/" class="brand">VK</a>
+        <ul class="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="btn" href="/Venkateswararao_Kumpatla_Resume.pdf">Resume</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {new Date().getFullYear()} Venkateswararao Kumpatla. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

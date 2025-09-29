@@ -1,11 +1,169 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Profile data pulled from your resume
+const name = "Venkateswararao Kumpatla";
+const headline = "Software Engineer — Java • APIs • Cloud";
+const location = "Melbourne, FL, USA";
+const phone = "+1 (321) 389-6142";
+const email = "venkatkumpatla8757@gmail.com";
+
+const summary = `Software engineer with a Master’s in Information Technology and Management and one year of professional experience. 
+Skilled in Java, Python, SQL, building RESTful APIs and scalable backend systems, with Agile and CI/CD experience.`;
+
+const links = {
+  github: "https://github.com/venkatkumpatla",
+  linkedin: "https://www.linkedin.com/in/venkateswara-rao-kumpatla-345769245",
+  email: `mailto:${email}`,
+};
+
+const skills = [
+  // Programming
+  "Java", "Python", "C++", "C", "PowerShell",
+  // Databases
+  "SQL", "MySQL", "Oracle", "MongoDB",
+  // Cloud & Distributed
+  "AWS", "Azure", "GCP", "VMware", "Hyper-V",
+  // Networking
+  "TCP/IP", "DNS", "DHCP", "VPN", "Routing", "Switching",
+  // DevOps & Tools
+  "Git", "Jenkins", "Docker", "Cisco Packet Tracer",
+  // OS & Security
+  "Windows Server", "Linux/Unix", "Active Directory",
+  "Firewall Management", "Threat Detection", "IT Policies"
+];
+
+const projects = [
+  {
+    name: "Blockchain Supply Chain System",
+    year: "2023",
+    desc: "Secure blockchain app to enhance transparency in supply chain operations.",
+    tech: ["Blockchain", "Distributed Systems"],
+    url: "#"
+  },
+  {
+    name: "Password Generator App",
+    year: "2022",
+    desc: "Desktop tool to generate strong, randomized passwords.",
+    tech: ["Desktop App", "Security"],
+    url: "#"
+  },
+  {
+    name: "Cisco Packet Tracer Network",
+    year: "2021",
+    desc: "Designed and configured a small-scale network with full IP routing.",
+    tech: ["Networking", "Cisco Packet Tracer"],
+    url: "#"
+  }
+];
+
+const experience = [
+  {
+    role: "Software Engineer Intern",
+    company: "Carvintech LLC",
+    period: "Apr 2025 – Present",
+    location: "GA 30022",
+    bullets: [
+      "Developed scalable backend systems using Java and AWS.",
+      "Participated in Agile ceremonies and improved CI/CD processes.",
+      "Contributed to system architecture under mentor guidance."
+    ]
+  },
+  {
+    role: "Software Developer",
+    company: "Confidential Client",
+    period: "Jan 2023 – Dec 2023",
+    location: "Melbourne, FL",
+    bullets: [
+      "Built RESTful APIs and microservices with Spring Boot & Java.",
+      "Managed AWS infrastructure (EC2, Lambda, S3) for scalability.",
+      "Implemented secure data handling and encryption; added unit/integration tests and Jenkins pipelines."
+    ]
+  }
+];
+
+const education = {
+  school: "Cumberland University, TN",
+  degree: "MS, Information Technology and Management",
+  grad: "Dec 2024",
+  gpa: "3.85 / 4.0",
+  coursework: ["Information Security", "Risk Management", "IT Law & Compliance", "Computer Information Systems"]
+};
 ---
+<Layout title={`${name} — Profile`} description="Personal profile website">
+  <!-- HERO -->
+  <section class="hero container">
+    <img class="avatar" src="/profile.jpg" alt={`Portrait of ${name}`} />
+    <div class="hero-text">
+      <h1>{name}</h1>
+      <p class="subtitle">{headline}</p>
+      <p class="location">📍 {location}</p>
+      <p class="summary">{summary}</p>
+      <div class="cta">
+        <a class="btn" href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href={links.github} target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href={links.email}>Email</a>
+      </div>
+    </div>
+  </section>
 
-<Layout>
-	<Welcome />
+  <!-- SKILLS -->
+  <section id="skills" class="section container">
+    <h2>Skills</h2>
+    <ul class="pill-list">
+      {skills.map((s) => <li>{s}</li>)}
+    </ul>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section container">
+    <h2>Projects</h2>
+    <div class="grid">
+      {projects.map((p) => (
+        <article class="card">
+          <header>
+            <h3>{p.name} <small class="muted">({p.year})</small></h3>
+            <ul class="tags">{p.tech.map((t) => <li>{t}</li>)}</ul>
+          </header>
+          <p>{p.desc}</p>
+          {p.url && <p><a class="link" href={p.url} target="_blank" rel="noopener">View project →</a></p>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section container">
+    <h2>Experience</h2>
+    {experience.map((e) => (
+      <article class="card">
+        <h3>{e.role} — {e.company}</h3>
+        <p class="muted">{e.period} • {e.location}</p>
+        <ul>
+          {e.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+      </article>
+    ))}
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section container">
+    <h2>Education</h2>
+    <article class="card">
+      <h3>{education.degree}</h3>
+      <p><strong>{education.school}</strong> • {education.grad} • GPA {education.gpa}</p>
+      <p class="muted">Coursework: {education.coursework.join(", ")}</p>
+    </article>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section container">
+    <h2>Contact</h2>
+    <ul class="contact">
+      <li>📧 <a href={`mailto:${email}`}>{email}</a></li>
+      <li>📱 <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`}>{phone}</a></li>
+      <li>💼 <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+      <li>🐙 <a href={links.github} target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </section>
 </Layout>
